@@ -26,7 +26,17 @@ class DeviceController {
     }
   }
 
-  async getAll(req, res) {}
+  async getAll(req, res) {
+    const { typeId } = req.query;
+    let devices;
+    if (!typeId) {
+      devices = await Device.findAll();
+    }
+    if (typeId) {
+      devices = await Device.findAll({ where: { typeId } });
+    }
+    return res.json(devices);
+  }
 
   async getOne(req, res) {}
 }
