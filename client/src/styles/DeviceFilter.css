@@ -1,0 +1,40 @@
+.device-filter {
+  margin-bottom: 80px;
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.device-filter > * {
+  width: 570px;
+}
+
+.device-filter__btns {
+  display: flex;
+  gap: 20px;
+}
+
+.device-filter__btns > button {
+  padding: 10px 15px;
+}
+
+.device-filter__btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.device-filter__title {
+  font-size: 12px;
+}
+
+@media (max-width: 576px) {
+  .device-filter {
+    flex-direction: column;
+    min-width: 100%;
+  }
+
+  .device-filter > * {
+    max-width: calc(100vw - 50px);
+  }
+}

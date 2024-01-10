@@ -1,0 +1,41 @@
+.device-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 270px;
+  color: var(--dark);
+}
+
+.device-card:hover .device-card__title {
+  color: var(--accent);
+}
+
+.device-card__img {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.device-card__title,
+.device-card__price {
+  font-family: var(--font-accent);
+  font-size: 20px;
+  margin-bottom: 15px;
+  transition: color 0.3s ease-in-out;
+}
+
+.device-card__btns {
+  display: flex;
+  gap: 10px;
+}
+
+.device-card__btns > button {
+  transition: filter 0.3s ease-in-out;
+}
+
+.device-card__btns > button:hover {
+  filter: invert(0.7);
+}
+
+.device-card__btn-active {
+  filter: invert(0.7);
+}

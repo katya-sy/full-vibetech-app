@@ -1,0 +1,36 @@
+.promo {
+  position: relative;
+  max-width: 870px;
+}
+
+.promo img {
+  width: 100%;
+}
+
+.promo h2 {
+  position: absolute;
+  font-family: var(--font-accent);
+}
+
+.promo h2:nth-child(2) {
+  top: 0;
+  color: var(--accent);
+  font-size: 56px;
+}
+
+.promo h2:nth-child(3) {
+  right: 0;
+  bottom: 0;
+  color: var(--dark);
+  font-size: 36px;
+}
+
+@media (max-width: 576px) {
+  .promo h2:nth-child(2) {
+    font-size: 36px;
+  }
+
+  .promo h2:nth-child(3) {
+    font-size: 24px;
+  }
+}

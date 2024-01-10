@@ -1,0 +1,100 @@
+:root {
+  --dark: #1f1f1f;
+  --light: #fbfbfb;
+  --medium: #a0a0a0;
+  --accent: #0077ff;
+
+  --font-main: "Montserrat";
+  --font-accent: "Exo2";
+}
+
+@font-face {
+  font-weight: 400;
+  font-family: Montserrat;
+  src: url("../assets/fonts/Montserrat-Regular.ttf");
+}
+
+@font-face {
+  font-weight: 400;
+  font-family: Exo2;
+  src: url("../assets/fonts/Exo2-Regular.ttf");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+  font-family: var(--font-main);
+  box-sizing: border-box;
+  font-weight: 400;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+body {
+  background-color: var(--light);
+}
+
+.container {
+  max-width: 1210px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.wrapper__content {
+  max-width: calc(100% - 270px);
+}
+
+.title {
+  margin: 80px 0 50px;
+  color: var(--accent);
+  font-family: var(--font-accent);
+  font-size: 48px;
+}
+
+.form__title {
+  margin: 0;
+}
+
+.logo {
+  transition: filter 0.3s ease-in-out;
+}
+
+.logo:hover {
+  filter: brightness(0.7);
+}
+
+.help {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    position: relative;
+  }
+
+  .wrapper__content {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .title {
+    font-size: 32px;
+  }
+}

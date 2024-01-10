@@ -1,0 +1,139 @@
+.device-main {
+  display: flex;
+  flex-direction: column;
+  gap: 120px;
+}
+
+.device-main__content {
+  display: flex;
+  gap: 180px;
+}
+
+.device-main__images {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  max-width: 570px;
+  flex: 1 0 auto;
+}
+
+.device-main__images > img {
+  width: 120px;
+  height: 120px;
+}
+
+.device-main__images > img:first-child {
+  grid-column: 1 / 4;
+  width: 100%;
+  height: 100%;
+}
+
+.device-main__content-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.device-main__title {
+  margin-bottom: 40px;
+  color: var(--accent);
+  font-family: var(--font-accent);
+  font-size: 48px;
+}
+
+.device-main__desc {
+  color: var(--dark);
+  font-size: 20px;
+}
+
+.device-main__price {
+  margin: 30px 0;
+  color: var(--dark);
+  font-family: var(--font-accent);
+  font-size: 36px;
+}
+
+.device-main__btns {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.device-main__btn {
+  transition: opacity 0.3s ease-in-out;
+}
+
+.device-main__btn:hover {
+  opacity: 0.6;
+}
+
+.device-main__btn--active {
+  filter: grayscale(100%) contrast(100%) brightness(120%) sepia(100%)
+    saturate(10000%) hue-rotate(900deg);
+}
+
+.device-main__info-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.device-main__info-item {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.device-main__info-item > * {
+  color: var(--dark);
+  font-size: 24px;
+}
+
+@media (max-width: 1200px) {
+  .device-main__content {
+    gap: 60px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .device-main__title {
+    font-size: 36px;
+  }
+
+  .device-main__desc {
+    font-size: 16px;
+  }
+
+  .device-main__info-item > * {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 992px) {
+  .device-main__images {
+    max-width: 340px;
+  }
+
+  .device-main__images {
+    max-width: 100%;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .device-main__images > img:first-child {
+    grid-column: 1 / 3;
+  }
+}
+
+@media (max-width: 576px) {
+  .device-main__content {
+    flex-direction: column;
+  }
+
+  .device-main__images {
+    max-width: 100%;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .device-main__images > img:first-child {
+    grid-column: 1 / 3;
+  }
+}
