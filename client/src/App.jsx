@@ -8,12 +8,26 @@ import Modal from "./components/UI/modal/Modal";
 import Form from "./components/UI/form/Form";
 import { Context } from "./main";
 import help from "./assets/img/help.svg";
+import { registration, login, check } from "./http/userAPI";
+import Loader from "./components/UI/loader/Loader";
+import Button from "./components/UI/button/Button";
 
 function App() {
   const [modalVisible, setModalVisible] = useState(false);
   const [regModalVisible, setRegModalVisible] = useState(false);
+  const [logoutModalVisible, setLogoutModalVisible] = useState(false);
   const { user } = useContext(Context);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    check()
+      .then((data) => {
+        user.setUser(data);
+        user.setIsAuth(true);
+      })
+      .finally(() => setLoading(false));
+  }, []);
 
   useEffect(() => {
     const handleResize = () => {
@@ -23,17 +37,58 @@ function App() {
     window.addEventListener("resize", handleResize);
   }, [isMobile]);
 
-  const login = () => {
+  const authorizateUser = (data) => {
+    user.setUser(data);
     user.setIsAuth(true);
-    setModalVisible(false);
-    setRegModalVisible(false);
+  };
+
+  const signIn = async (name, email, password) => {
+    try {
+      const data = await registration(name, email, password);
+      console.log(data);
+      authorizateUser(data);
+    } catch (error) {
+      alert(error.response.data.message);
+    } finally {
+      setRegModalVisible(false);
+    }
+  };
+
+  const logIn = async (name, password) => {
+    try {
+      const data = await login(name, password);
+      console.log(data);
+      authorizateUser(data);
+    } catch (error) {
+      alert(error.response.data.message);
+    } finally {
+      setModalVisible(false);
+    }
+  };
+
+  const logOut = () => {
+    user.setUser({});
+    user.setIsAuth(false);
+    setLogoutModalVisible(false);
+    localStorage.removeItem("token");
   };
 
   function openModal() {
-    if (modalVisible) {
-      setRegModalVisible(true);
-      setModalVisible(false);
-    } else setModalVisible(true);
+    if (user.isAuth) setLogoutModalVisible(true);
+    else {
+      if (modalVisible) {
+        setRegModalVisible(true);
+        setModalVisible(false);
+      } else setModalVisible(true);
+    }
+  }
+
+  if (loading) {
+    return (
+      <div className="loader__wrapper">
+        <Loader />
+      </div>
+    );
   }
 
   return (
@@ -44,8 +99,8 @@ function App() {
       </div>
       <Footer />
       <Modal modalVisible={modalVisible} setModalVisible={setModalVisible}>
-        <h2 className="title form__title">Вход</h2>
-        <Form buttonText={"Войти"} login={login} />
+        <h2 className="title modal__title">Вход</h2>
+        <Form buttonText={"Войти"} login={logIn} />
         <div style={{ display: "flex", gap: 20, flexWrap: "wrap" }}>
           <button
             style={{ color: "var(--accent)" }}
@@ -63,12 +118,19 @@ function App() {
         modalVisible={regModalVisible}
         setModalVisible={setRegModalVisible}
       >
-        <h2 className="title form__title">Регистрация</h2>
-        <Form buttonText={"Войти"} registrationForm login={login} />
+        <h2 className="title modal__title">Регистрация</h2>
+        <Form buttonText={"Войти"} registrationForm login={signIn} />
         <button className="help" style={{ alignSelf: "flex-end" }}>
           <span>Нужна помощь?</span>
           <img src={help} />
         </button>
+      </Modal>
+      <Modal
+        modalVisible={logoutModalVisible}
+        setModalVisible={setLogoutModalVisible}
+      >
+        <h2 className="title modal__title">Выйти?</h2>
+        <Button onClick={logOut}>Да</Button>
       </Modal>
     </BrowserRouter>
   );

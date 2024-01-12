@@ -44,7 +44,7 @@ const Header = observer(({ openModal, isMobile }) => {
               <button>
                 <img src={favourite} />
               </button>
-              <button>
+              <button onClick={openModal}>
                 <img src={userIcon} />
               </button>
             </div>

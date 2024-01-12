@@ -15,12 +15,12 @@ const Form = observer(
     } = useForm();
     const onSubmit = (data) => {
       console.log(data);
-      if (feedbackForm) {
-        reset();
-      } else {
-        login();
-        reset();
+      if (registrationForm) {
+        login(data.name, data.email, data.password);
+      } else if (!feedbackForm && !registrationForm) {
+        login(data.name, data.password);
       }
+      reset();
     };
 
     return (

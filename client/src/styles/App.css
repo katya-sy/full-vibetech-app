@@ -63,7 +63,7 @@ body {
   font-size: 48px;
 }
 
-.form__title {
+.modal__title {
   margin: 0;
 }
 
@@ -81,6 +81,11 @@ body {
   gap: 10px;
   color: var(--accent);
   white-space: nowrap;
+}
+
+.loader__wrapper {
+  margin: 100px auto;
+  max-width: 100px;
 }
 
 @media (max-width: 768px) {
