@@ -14,7 +14,11 @@ function DeviceCard({ device }) {
     <div className="device-card">
       <div onClick={() => router(`${DEVICE_ROUTE}/${device.id}`)}>
         <picture>
-          <img className="device-card__img" src={device.img[0]} alt="Device" />
+          <img
+            className="device-card__img"
+            src={import.meta.env.VITE_API_URL + device.img}
+            alt="Device"
+          />
         </picture>
         <h4 className="device-card__title">{device.name}</h4>
       </div>

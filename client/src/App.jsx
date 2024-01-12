@@ -11,12 +11,13 @@ import help from "./assets/img/help.svg";
 import { registration, login, check } from "./http/userAPI";
 import Loader from "./components/UI/loader/Loader";
 import Button from "./components/UI/button/Button";
+import { fetchDevices } from "./http/deviceAPI";
 
 function App() {
   const [modalVisible, setModalVisible] = useState(false);
   const [regModalVisible, setRegModalVisible] = useState(false);
   const [logoutModalVisible, setLogoutModalVisible] = useState(false);
-  const { user } = useContext(Context);
+  const { user, device } = useContext(Context);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [loading, setLoading] = useState(true);
 
@@ -27,6 +28,7 @@ function App() {
         user.setIsAuth(true);
       })
       .finally(() => setLoading(false));
+    fetchDevices().then((data) => device.setDevices(data.rows));
   }, []);
 
   useEffect(() => {

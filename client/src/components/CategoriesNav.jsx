@@ -1,11 +1,16 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Context } from "../main";
 import "../styles/CategoriesNav.css";
 import { observer } from "mobx-react-lite";
 import close from "../assets/img/close.svg";
+import { fetchTypes } from "../http/deviceAPI";
 
 const CategoriesNav = observer(() => {
   const { device, isButtonClick } = useContext(Context);
+
+  useEffect(() => {
+    fetchTypes().then((data) => device.setTypes(data));
+  }, []);
 
   return (
     <div
