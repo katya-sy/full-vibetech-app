@@ -32,9 +32,9 @@ const CategoriesNav = observer(() => {
             key={type.id}
             onClick={() => {
               device.setSelectedType(type);
+              isButtonClick.setIsButtonClick(false);
             }}
           >
-            {/* <img src={type.img} /> */}
             <span>{type.name}</span>
           </li>
         ))}

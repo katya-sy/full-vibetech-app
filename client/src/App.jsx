@@ -12,8 +12,9 @@ import { registration, login, check } from "./http/userAPI";
 import Loader from "./components/UI/loader/Loader";
 import Button from "./components/UI/button/Button";
 import { fetchDevices } from "./http/deviceAPI";
+import { observer } from "mobx-react-lite";
 
-function App() {
+const App = observer(() => {
   const [modalVisible, setModalVisible] = useState(false);
   const [regModalVisible, setRegModalVisible] = useState(false);
   const [logoutModalVisible, setLogoutModalVisible] = useState(false);
@@ -28,8 +29,20 @@ function App() {
         user.setIsAuth(true);
       })
       .finally(() => setLoading(false));
-    fetchDevices().then((data) => device.setDevices(data.rows));
+    fetchDevices(device.selectedType.id, 1, 3).then((data) => {
+      device.setDevices(data.rows);
+      device.setTotalCount(data.count);
+    });
   }, []);
+
+  useEffect(() => {
+    fetchDevices(device.selectedType.id, device.page, device.limit).then(
+      (data) => {
+        device.setDevices(data.rows);
+        device.setTotalCount(data.count);
+      }
+    );
+  }, [device.page, device.selectedType]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -136,6 +149,6 @@ function App() {
       </Modal>
     </BrowserRouter>
   );
-}
+});
 
 export default App;
