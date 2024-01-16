@@ -114,7 +114,7 @@
   }
 
   .device-main__images {
-    max-width: 100%;
+    max-width: 450px;
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -123,13 +123,13 @@
   }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 768px) {
   .device-main__content {
     flex-direction: column;
   }
 
   .device-main__images {
-    max-width: 100%;
+    align-self: center;
     grid-template-columns: repeat(2, 1fr);
   }
 

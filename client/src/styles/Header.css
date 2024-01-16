@@ -50,14 +50,16 @@
   }
 }
 
+@media (max-width: 768px) {
+  .header__nav > * {
+    font-size: 12px;
+  }
+}
+
 @media (max-width: 576px) {
   .header__wrapper {
     flex-wrap: wrap;
     gap: 30px;
-  }
-
-  .header__nav > * {
-    font-size: 12px;
   }
 
   .header__icons {

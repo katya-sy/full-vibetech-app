@@ -41,7 +41,7 @@
   }
 
   .device-filter > * {
-    max-width: calc(100vw - 50px);
+    max-width: calc(100vw - 60px);
   }
 
   .device-filter__btns {
