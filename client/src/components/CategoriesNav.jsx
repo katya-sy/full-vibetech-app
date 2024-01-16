@@ -27,6 +27,14 @@ const CategoriesNav = observer(() => {
         <img src={close} />
       </button>
       <ul>
+        <li
+          onClick={() => {
+            device.setSelectedType({});
+            isButtonClick.setIsButtonClick(false);
+          }}
+        >
+          <span>Все товары</span>
+        </li>
         {device.types.map((type) => (
           <li
             key={type.id}

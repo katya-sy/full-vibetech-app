@@ -23,8 +23,6 @@ const DeviceFilter = observer(() => {
     device.setSelectedSort(selectedOption.value);
   });
 
-  console.log(selectedOption);
-
   return (
     <div className="device-filter">
       <Input
