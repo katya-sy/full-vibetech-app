@@ -29,14 +29,17 @@ export default class DeviceStore {
   }
 
   setSearch(search) {
+    this.setPage(1);
     this._search = search;
   }
 
   setSelectedSort(sort) {
+    this.setPage(1);
     this._selectedSort = sort;
   }
 
   setSelectedOrder(order) {
+    this.setPage(1);
     this._selectedOrder = order;
   }
 
