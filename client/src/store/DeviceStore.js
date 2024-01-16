@@ -1,10 +1,14 @@
 import { makeAutoObservable } from "mobx";
+import { SORT } from "../utils/consts";
 
 export default class DeviceStore {
   constructor() {
     this._types = [];
     this._devices = [];
     this._selectedType = {};
+    this._search = "";
+    this._selectedSort = SORT.RATING;
+    this._selectedOrder = "ASC";
     this._page = 1;
     this._totalCount = 0;
     this._limit = 3;
@@ -20,7 +24,20 @@ export default class DeviceStore {
   }
 
   setSelectedType(type) {
+    this.setPage(1);
     this._selectedType = type;
+  }
+
+  setSearch(search) {
+    this._search = search;
+  }
+
+  setSelectedSort(sort) {
+    this._selectedSort = sort;
+  }
+
+  setSelectedOrder(order) {
+    this._selectedOrder = order;
   }
 
   setPage(page) {
@@ -45,6 +62,18 @@ export default class DeviceStore {
 
   get selectedType() {
     return this._selectedType;
+  }
+
+  get search() {
+    return this._search;
+  }
+
+  get selectedSort() {
+    return this._selectedSort;
+  }
+
+  get selectedOrder() {
+    return this._selectedOrder;
   }
 
   get page() {

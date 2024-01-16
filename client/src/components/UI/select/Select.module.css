@@ -1,0 +1,17 @@
+.select {
+  height: 36px;
+  padding: 10px 30px;
+  justify-content: center;
+  align-items: center;
+  background: var(--accent);
+  color: var(--light);
+  font-family: var(--font-accent);
+  font-size: 12px;
+  transition: box-shadow 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.select:hover {
+  box-shadow: 0px 8px 13px 0px rgba(31, 31, 31, 0.2) inset,
+    0px -8px 13px 0px rgba(31, 31, 31, 0.2) inset;
+}

@@ -2,7 +2,7 @@
   margin-bottom: 80px;
   display: flex;
   justify-content: space-between;
-  gap: 30px;
+  gap: 20px;
 }
 
 .device-filter > * {
@@ -15,17 +15,23 @@
 }
 
 .device-filter__btns > button {
-  padding: 10px 15px;
+  white-space: nowrap;
 }
 
 .device-filter__btn {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 5px;
 }
 
 .device-filter__title {
-  font-size: 12px;
+  font-size: 10px;
+}
+
+@media (max-width: 1024px) {
+  .device-filter {
+    flex-wrap: wrap;
+  }
 }
 
 @media (max-width: 576px) {
@@ -36,5 +42,9 @@
 
   .device-filter > * {
     max-width: calc(100vw - 50px);
+  }
+
+  .device-filter__btns {
+    flex-wrap: wrap;
   }
 }

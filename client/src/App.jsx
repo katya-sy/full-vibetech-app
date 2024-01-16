@@ -29,20 +29,36 @@ const App = observer(() => {
         user.setIsAuth(true);
       })
       .finally(() => setLoading(false));
-    fetchDevices(device.selectedType.id, 1, 3).then((data) => {
+    fetchDevices(
+      device.selectedType.id,
+      1,
+      device.limit,
+      device.selectedOrder
+    ).then((data) => {
       device.setDevices(data.rows);
       device.setTotalCount(data.count);
     });
   }, []);
 
   useEffect(() => {
-    fetchDevices(device.selectedType.id, device.page, device.limit).then(
-      (data) => {
-        device.setDevices(data.rows);
-        device.setTotalCount(data.count);
-      }
-    );
-  }, [device.page, device.selectedType]);
+    fetchDevices(
+      device.selectedType.id,
+      device.page,
+      device.limit,
+      device.search,
+      device.selectedSort,
+      device.selectedOrder
+    ).then((data) => {
+      device.setDevices(data.rows);
+      device.setTotalCount(data.count);
+    });
+  }, [
+    device.page,
+    device.selectedType,
+    device.search,
+    device.selectedSort,
+    device.selectedOrder,
+  ]);
 
   useEffect(() => {
     const handleResize = () => {
