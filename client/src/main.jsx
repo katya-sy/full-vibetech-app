@@ -4,6 +4,7 @@ import App from "./App.jsx";
 import UserStore from "./store/UserStore.js";
 import DeviceStore from "./store/DeviceStore.js";
 import IsButtonClickStore from "./store/IsButtonClickStore.js";
+import BasketStore from "./store/BasketStore.js";
 
 export const Context = createContext(null);
 
@@ -13,6 +14,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       user: new UserStore(),
       device: new DeviceStore(),
       isButtonClick: new IsButtonClickStore(),
+      basket: new BasketStore(),
     }}
   >
     <App />

@@ -1,4 +1,4 @@
-import { $authHost, $host } from ".";
+import { $host } from ".";
 import { SORT } from "../utils/consts";
 
 export const fetchTypes = async () => {

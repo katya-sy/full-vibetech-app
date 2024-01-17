@@ -7,7 +7,7 @@ import search from "../assets/img/search.svg";
 import favourite from "../assets/img/favourite.svg";
 import cart from "../assets/img/cart.svg";
 import userIcon from "../assets/img/user.svg";
-import { CATEGORIES_ROUTE, SHOP_ROUTE } from "../utils/consts";
+import { BASKET_ROUTE, CATEGORIES_ROUTE, SHOP_ROUTE } from "../utils/consts";
 import { observer } from "mobx-react-lite";
 
 const Header = observer(({ openModal, isMobile }) => {
@@ -38,9 +38,9 @@ const Header = observer(({ openModal, isMobile }) => {
               <Link to={CATEGORIES_ROUTE}>
                 <img src={search} />
               </Link>
-              <button>
+              <Link to={BASKET_ROUTE}>
                 <img src={cart} />
-              </button>
+              </Link>
               <button>
                 <img src={favourite} />
               </button>
