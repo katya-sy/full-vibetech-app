@@ -6,21 +6,12 @@ import cart from "../assets/img/add-cart.svg";
 import "../styles/DeviceCard.css";
 import { DEVICE_ROUTE } from "../utils/consts";
 import { observer } from "mobx-react-lite";
-import { createBasketDevice } from "../http/basketAPI";
 import { Context } from "../main";
-import { fetchBasketDevices } from "../http/basketAPI";
 
 const DeviceCard = observer(({ device }) => {
   const router = useNavigate();
   const [favourite, setFavourite] = useState(false);
   const { user, basket } = useContext(Context);
-
-  const addDeviceToBasket = (deviceId, basketId) => {
-    createBasketDevice(deviceId, basketId);
-    fetchBasketDevices(user.user.id).then((data) => {
-      basket.setBasketDevices(data);
-    });
-  };
 
   return (
     <div className="device-card">
@@ -46,7 +37,7 @@ const DeviceCard = observer(({ device }) => {
           <button>
             <img
               src={cart}
-              onClick={() => addDeviceToBasket(device?.id, user.user.id)}
+              onClick={() => basket.addBasketDevice(device?.id, user.user.id)}
             />
           </button>
         </div>

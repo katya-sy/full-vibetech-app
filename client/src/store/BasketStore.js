@@ -1,9 +1,16 @@
 import { makeAutoObservable } from "mobx";
+import { createBasketDevice, fetchBasketDevices } from "../http/basketAPI";
 
 export default class BasketStore {
   constructor() {
     this._basketDevices = [];
     this._basketTotalCount = this.basketDevices.length;
+    this._addBasketDevice = (deviceId, basketId) => {
+      createBasketDevice(deviceId, basketId);
+      fetchBasketDevices(basketId).then((data) => {
+        this.setBasketDevices(data);
+      });
+    };
     makeAutoObservable(this);
   }
 
@@ -22,5 +29,9 @@ export default class BasketStore {
 
   get basketTotalCount() {
     return this._basketTotalCount;
+  }
+
+  get addBasketDevice() {
+    return this._addBasketDevice;
   }
 }

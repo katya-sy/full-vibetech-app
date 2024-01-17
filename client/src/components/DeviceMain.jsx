@@ -1,14 +1,16 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Button from "./UI/button/Button.jsx";
 import heart from "../assets/img/heart.svg";
 import "../styles/DeviceMain.css";
 import { useParams } from "react-router-dom";
 import { fetchOneDevice } from "../http/deviceAPI.js";
+import { Context } from "../main.jsx";
 
 function DeviceMain() {
   const [device, setDevice] = useState({ info: [] });
   const [favourite, setFavourite] = useState(false);
   const { id } = useParams();
+  const { basket, user } = useContext(Context);
 
   useEffect(() => {
     fetchOneDevice(id).then((data) => setDevice(data));
@@ -30,7 +32,12 @@ function DeviceMain() {
             <p className="device-main__price">{device.price} ₽</p>
           </div>
           <div className="device-main__btns">
-            <Button style={{ width: "60%" }}>Купить</Button>
+            <Button
+              style={{ width: "60%" }}
+              onClick={() => basket.addBasketDevice(device?.id, user.user.id)}
+            >
+              Купить
+            </Button>
             <button
               className={
                 favourite

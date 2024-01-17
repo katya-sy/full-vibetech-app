@@ -12,13 +12,14 @@ import { registration, login, check } from "./http/userAPI";
 import Loader from "./components/UI/loader/Loader";
 import Button from "./components/UI/button/Button";
 import { fetchDevices } from "./http/deviceAPI";
+import { fetchBasketDevices } from "./http/basketAPI";
 import { observer } from "mobx-react-lite";
 
 const App = observer(() => {
   const [modalVisible, setModalVisible] = useState(false);
   const [regModalVisible, setRegModalVisible] = useState(false);
   const [logoutModalVisible, setLogoutModalVisible] = useState(false);
-  const { user, device } = useContext(Context);
+  const { user, device, basket } = useContext(Context);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [loading, setLoading] = useState(true);
 
@@ -39,6 +40,13 @@ const App = observer(() => {
       device.setTotalCount(data.count);
     });
   }, []);
+
+  useEffect(() => {
+    fetchBasketDevices(user.user.id).then((data) => {
+      basket.setBasketDevices(data);
+      basket.setBasketTotalCount(data.length);
+    });
+  }, [user.user]);
 
   useEffect(() => {
     fetchDevices(
