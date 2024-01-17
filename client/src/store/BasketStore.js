@@ -9,6 +9,7 @@ export default class BasketStore {
 
   setBasketDevices(devices) {
     this._basketDevices = devices;
+    this.setBasketTotalCount(devices.length);
   }
 
   setBasketTotalCount(count) {

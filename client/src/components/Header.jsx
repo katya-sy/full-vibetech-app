@@ -11,7 +11,7 @@ import { BASKET_ROUTE, CATEGORIES_ROUTE, SHOP_ROUTE } from "../utils/consts";
 import { observer } from "mobx-react-lite";
 
 const Header = observer(({ openModal, isMobile }) => {
-  const { user, isButtonClick } = useContext(Context);
+  const { user, isButtonClick, basket } = useContext(Context);
 
   return (
     <header className="header">
@@ -38,8 +38,9 @@ const Header = observer(({ openModal, isMobile }) => {
               <Link to={CATEGORIES_ROUTE}>
                 <img src={search} />
               </Link>
-              <Link to={BASKET_ROUTE}>
+              <Link style={{ position: "relative" }} to={BASKET_ROUTE}>
                 <img src={cart} />
+                <div className="header__counter">{basket.basketTotalCount}</div>
               </Link>
               <button>
                 <img src={favourite} />
