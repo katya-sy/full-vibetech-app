@@ -4,8 +4,6 @@ import {
   fetchBasketDevices,
   deleteBasketDevice,
 } from "../http/basketAPI";
-// import { useContext } from "react";
-// import { Context } from "../main";
 
 export default class BasketStore {
   constructor() {
