@@ -19,10 +19,10 @@ export const createBasketDevice = async (deviceId, basketId) => {
   return data;
 };
 
-export const deleteBasketDevice = async (basketDeviceId) => {
+export const deleteBasketDevice = async (id) => {
   const { data } = await $authHost.delete("api/basket", {
     params: {
-      basketDeviceId,
+      id,
     },
   });
 

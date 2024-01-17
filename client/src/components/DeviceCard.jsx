@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "../styles/Promo.css";
 import fav from "../assets/img/add-fav.svg";
 import cart from "../assets/img/add-cart.svg";
+import minus from "../assets/img/delete.svg";
 import "../styles/DeviceCard.css";
 import { DEVICE_ROUTE } from "../utils/consts";
 import { observer } from "mobx-react-lite";
@@ -40,6 +41,14 @@ const DeviceCard = observer(({ device }) => {
               onClick={() => basket.addBasketDevice(device?.id, user.user.id)}
             />
           </button>
+          {basket.isDeviceInBasket(device?.id) && (
+            <button>
+              <img
+                src={minus}
+                onClick={() => basket.removeBasketDevice(device?.id)}
+              />
+            </button>
+          )}
         </div>
       </div>
     </div>
