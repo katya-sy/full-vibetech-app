@@ -9,6 +9,7 @@ export default class BasketStore {
       createBasketDevice(deviceId, basketId);
       fetchBasketDevices(basketId).then((data) => {
         this.setBasketDevices(data);
+        this.setBasketTotalCount(this.basketTotalCount + 1);
       });
     };
     makeAutoObservable(this);
